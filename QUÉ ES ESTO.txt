@@ -1,0 +1,8 @@
+Jueves, 28 de ENERO del 2021 [11:41 PM]
+
+Este proyecto consiste en hacer un Bot de Discord utilizando la API de Python.
+Seguiré un tutorial para hacerlo, ya que es el primero que haría.
+
+FUENTE VIDEO:
+    [YT - freeCodeCamp.org] Code a Discord Bot with Python - Host for Free in the Cloud
+https://www.youtube.com/watch?v=SPTfmiYiuok&list=PLg8w9DGA17RvS2cY-RP6HAyvJK1TmQMZf&index=1&t=139s&ab_channel=freeCodeCamp.org
