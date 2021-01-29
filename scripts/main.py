@@ -9,15 +9,30 @@
 import discord # Discord Library
 # Import os in order to access TOKEN from the .env file.
 import os
+# Utilizaremos una API, por lo que necesitamos utilizar requests, que hace una
+#   solicitud mediante HTML, y la recibe como JSON, por lo que también tendremos
+#   que importar JSON.
+import requests
+import json
 
-
-TOKEN = "ODA0NTkyMjA2OTc5NTMwNzc0.YBOk4g.6lv2eVYrGbzCKrzd-aftbwXRu2w"
+TOKEN = "ODA0NTkyMjA2OTc5NTMwNzc0.YBOk4g.RXiPE_ruWKE32rK1b-NYWqEwYAQ"
 # from pathlib import Path  # Python 3.6+ only
 # env_path = Path('.') / '.env'
 # load_dotenv(dotenv_path=env_path)
 
 # Create an instance to a Client. A connection to Discord.
 client = discord.Client()
+
+# Para obtener frases inspiracionales de una API.
+def get_quote():
+    # Request data from the API URL.
+    # It returns a random quote.
+    response = requests.get("https://zenquotes.io/api/random")
+    json_data = json.loads(response.text) # This way we get the json file.
+    # In order to get the quote, we must figure out how it comes in the json file.
+    # json_data[0]['q'] = quote, json_data[0]['a'] = author.
+    quote = json_data[0]['q'] + " - " + json_data[0]['a']
+    return quote
 
 # Use the client.creator.event to register an event.
 # This client uses events to make it work. This is how you register an event.
@@ -61,6 +76,9 @@ async def on_message(message):
     if message.content.startswith("rodrigo"):
         await message.channel.send("basado")
 
+    # To send the inspirational quote.
+    if message.content.startswith("!inspiration"):
+        await message.channel.send(get_quote())
 
 # Empezaremos a correr el bot. Se debe poner el Token dentro de run()
 # Accedemos utilizando la variable que agregamos en el archivo .env
