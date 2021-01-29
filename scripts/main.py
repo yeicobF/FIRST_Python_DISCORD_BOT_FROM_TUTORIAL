@@ -10,6 +10,8 @@ import discord # Discord Library
 # Import os in order to access TOKEN from the .env file.
 import os
 
+
+TOKEN = "ODA0NTkyMjA2OTc5NTMwNzc0.YBOk4g.6lv2eVYrGbzCKrzd-aftbwXRu2w"
 # from pathlib import Path  # Python 3.6+ only
 # env_path = Path('.') / '.env'
 # load_dotenv(dotenv_path=env_path)
@@ -28,6 +30,13 @@ client = discord.Client()
 async def on_ready(): # When the bot is running and ready to be used.
     # It will print the client.
     print("\n - We have logged in as {0.user}".format(client))
+    print(f"\n - client.user.name {client.user.name}")
+    # # Hacer que el bot muestre que está viendo un directo.
+    # # No funcionó así, solo muestra el nombre.
+    # await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Escape Utópico",
+                                                        #    url="https://www.twitch.tv/videos/725928952", details="Nostalgia..."))
+    # Hacer que el bot muestre que está viendo un directo.
+    await client.change_presence(activity=discord.Streaming(name="Escape Utópico", url="https://www.twitch.tv/escape_utopico"))
 
 @client.event
 # To now what to do when a message is received.
@@ -40,7 +49,11 @@ async def on_message(message):
     # Prefijo con el que se manejarán los comandos del bot.
     if message.content.startswith("sergio"):
         # El mensaje que se mandará cuando se reciba el comando.
-        await message.channel.send("sergio")
+        await message.channel.send(".")
+
+    # Lo de abajo no funcionó.
+    # if message.content.startswith("!!."):
+    #     await client.change_presence(activity="Sergio", status=, afk=True)
 
     if message.content.startswith("german"):
         await message.channel.send("...")
@@ -49,10 +62,9 @@ async def on_message(message):
         await message.channel.send("basado")
 
 
-
 # Empezaremos a correr el bot. Se debe poner el Token dentro de run()
 # Accedemos utilizando la variable que agregamos en el archivo .env
-client.run(os.getenv(ODA0NTkyMjA2OTc5NTMwNzc0.YBOk4g.6lv2eVYrGbzCKrzd-aftbwXRu2w))
+client.run(TOKEN)
 
 # No funciona en este repositorio, creo que tendría que instalar dotnet,
 #   pero en repl.it sí funciona.
