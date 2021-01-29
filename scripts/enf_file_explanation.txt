@@ -1,0 +1,2 @@
+In the .env file, we will store the bot token, because this way, no one will be
+    able to see it even though the repl.it code is public.
